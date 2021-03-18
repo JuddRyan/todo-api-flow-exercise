@@ -23,7 +23,7 @@ app.use(bodyParser.json());
 app.use('/todos', ...middleware, registerTodoEndpoints);
 
 // register auth endpoints
-app.use('/auth', authenticate);
+// app.use('/auth', authenticate);
 
 /**
  * Start listening on a port

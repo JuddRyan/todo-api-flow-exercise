@@ -4,7 +4,7 @@
 
 import express from 'express';
 import TodoDb from '../../lib/TodoDb.js';
-import { getTodos, addTodo, updateTodo, deleteTodo } from './crudTodo.js';
+import { getTodos, addTodo, updateTodo, deleteTodo, getTodosCSV} from './crudTodo.js';
 
 const app = express.Router();
 const todoData = new TodoDb();
@@ -12,6 +12,10 @@ const todoData = new TodoDb();
 // get the todos
 app.get('/', async (req, res) => {
   await getTodos(todoData, req, res);
+});
+
+app.get('/csv', async (req, res) => {
+  await getTodosCSV(todoData, req, res);
 });
 
 // add a todo

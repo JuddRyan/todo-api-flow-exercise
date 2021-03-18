@@ -20,6 +20,32 @@ export const getTodos = async (todo, request, response) => {
   }
 };
 
+export const getTodosCSV = async (todo, request, response) => {
+  try {
+    if (response.status(200)) {
+      let json = await todo.get()
+      let fields = Object.keys(json[0])
+      let replacer = function(key, value) { return value === null ? '' : value } 
+      let csv = json.map(function(row){
+        return fields.map(function(fieldName){
+          return JSON.stringify(row[fieldName], replacer)
+        }).join(',')
+      })
+      csv.unshift(fields.join(',')) // add header column
+      csv = csv.join('\r\n');
+      response.header('Content-Type', 'text/csv');
+      response.attachment("csv-calendar.csv")
+
+      return response.send( csv )
+
+    }
+    // response.status(200).csv({ todos: await todo.get() });
+  } catch ({ message }) {
+    response.status(500);
+    response.json({ error: message });
+  }
+};
+
 /**
  * Creates a new todo item
  *

@@ -5,4 +5,4 @@
 import auth from './auth.js';
 import todofilter from './todofilter.js';
 
-export default [auth, todofilter];
+export default [todofilter];
