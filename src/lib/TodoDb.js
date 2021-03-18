@@ -11,9 +11,16 @@ export default class TodoDb {
    *
    * @param {string} description
    */
-  async add(description) {
+  async add(obj) {
     try {
-      return await knexTodos('todos').insert({ description });
+      return await knexTodos('todos').insert({ 
+        "description": obj.description,
+        "subject": obj.subject,
+        "start_date": obj.start_Date,
+        "start_time": obj.start_Time,
+        "private": obj.private,
+        "location": obj.location
+      });
     } catch (e) {
       return Logger.error(e.message);
     }
