@@ -12,4 +12,6 @@ const knexTodos = knex({
   useNullAsDefault: true,
 });
 
+const test = 'test';
+
 export default knexTodos;
