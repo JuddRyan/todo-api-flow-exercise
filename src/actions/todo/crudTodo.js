@@ -55,8 +55,8 @@ export const getTodosCSV = async (todo, request, response) => {
  */
 export const addTodo = async (todo, request, response) => {
   try {
-    const { description } = parseTodo(request, response);
-    const newTodo = await todo.add(description);
+    const obj = parseTodo(request, response);
+    const newTodo = await todo.add(obj);
     response.status(201).json({ todo: newTodo });
   } catch ({ message }) {
     response.status(500).json({ error: message });

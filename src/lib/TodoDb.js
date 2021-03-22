@@ -16,8 +16,8 @@ export default class TodoDb {
       return await knexTodos('todos').insert({ 
         "description": obj.description,
         "subject": obj.subject,
-        "start_date": obj.start_Date,
-        "start_time": obj.start_Time,
+        "start_date": obj.start_date,
+        "start_time": obj.start_time,
         "private": obj.private,
         "location": obj.location
       });
